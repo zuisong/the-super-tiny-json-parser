@@ -1,0 +1,19 @@
+{
+  "name": "the-super-tiny-json-parser",
+  "version": "1.0.0",
+  "description": "一个很小的 json 解析器",
+  "main": "index.js",
+  "author": "zuisong",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/node": "^10.12.12",
+    "clean-webpack-plugin": "^1.0.0",
+    "fork-ts-checker-webpack-plugin": "^0.5.0",
+    "ts-loader": "^5.3.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
