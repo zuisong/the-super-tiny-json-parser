@@ -1,5 +1,5 @@
 import * as  assert from 'assert'
-import { generateTokes, generateObject, generateAST } from 'index'
+import { generateTokes, generateObject, generateAST } from './the-super-tiny-json-parser'
 
 
 // 预期得到的对象
@@ -39,7 +39,7 @@ const expectTokens =
 
 // 原本的json串
 const a =
-    `
+`
 {
     c: -11,
     d: [
