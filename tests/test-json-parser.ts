@@ -1,6 +1,18 @@
-import * as  assert from 'assert'
-import { generateTokes, generateObject, generateAST } from './the-super-tiny-json-parser'
+import { deepStrictEqual } from 'assert';
+import { generateAST, generateObject, generateTokes } from '../index';
 
+// 原本的json串
+const a = `
+{
+    c: -11,
+    d: [
+        1,
+        {
+            f: 'g'
+        }
+    ]
+}
+`;
 
 // 预期得到的对象
 const expectObject =
@@ -12,7 +24,7 @@ const expectObject =
             f: 'g'
         }
     ]
-}
+};
 
 // 预期得的tokens
 const expectTokens =
@@ -34,34 +46,21 @@ const expectTokens =
         { type: '大括号', value: '}' },
         { type: '方括号', value: ']' },
         { type: '大括号', value: '}' },
-    ]
-
-
-// 原本的json串
-const a =
-`
-{
-    c: -11,
-    d: [
-        1,
-        {
-            f: 'g'
-        }
-    ]
-}
-`
-const tokens = generateTokes(a)
+    ];
 
 
 
+const tokens = generateTokes(a);
 
-
-assert.deepStrictEqual(tokens, expectTokens, 'token 转换不符合预期')
+deepStrictEqual(tokens, expectTokens, 'token 转换不符合预期')
 
 const ast = generateAST(tokens)
 
 const obj = generateObject(ast)
 
-assert.deepStrictEqual(obj, expectObject, '对象转换不对')
+deepStrictEqual(obj, expectObject, '对象转换不对')
 
-console.table(obj)
+console.log(a);
+console.log(obj);
+
+console.log("OK!!! All down!!!")
