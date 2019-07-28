@@ -7,9 +7,9 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@types/node": "^10.12.12",
-    "parcel": "^1.10.3",
-    "ts-node": "^8.0.2",
-    "typescript": "^3.2.2"
+    "@types/node": "^12.6.8",
+    "parcel": "^1.12.3",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   }
 }
