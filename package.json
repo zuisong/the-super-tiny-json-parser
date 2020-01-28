@@ -8,10 +8,9 @@
     "build": "parcel build index.ts"
   },
   "license": "MIT",
-  "private": false,
   "devDependencies": {
     "@types/node": "^13.5.0",
-    "parcel": "^2.0.0-alpha.3.2",
+    "parcel": "^1.12.4",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   }
