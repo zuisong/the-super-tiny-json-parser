@@ -11,12 +11,7 @@
     "removeComments": true,
     "target": "es5",
     "strict": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2016",
-      "dom"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2016", "dom"]
   }
 }
