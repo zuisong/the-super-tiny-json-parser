@@ -1,22 +1,23 @@
 export enum TokenType {
-  大括号 = '大括号',
-  方括号 = '方括号',
-  冒号 = '冒号',
-  逗号 = '逗号',
-  名字 = '名字',
-  数字 = '数字',
-  字符串 = '字符串',
+  BIG = '大括号',
+  SQUARE = '方括号',
+  COLON = '冒号',
+  COMMA = '逗号',
+  IDENTIFY = '标识符',
+  NUMBER = '数字',
+  BOOLEAN = '布尔',
+  STRING = '字符串',
 }
 
 export enum JsonNodeType {
-  ROOT_NODE = '1',
-  JSON_OBJ = '2',
-  JSON_ARRAY = '3',
+  JSON_OBJECT = '1',
+  JSON_ARRAY = '2',
   NUMBER = '4',
-  STRING = '5',
+  STRING = '8',
+  BOOLEAN = '16',
 }
 
-export interface Token {
+export type Token = {
   type: TokenType
   value: string
 }
@@ -29,13 +30,28 @@ export function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
   return t
 }
 
-export interface Pair<V1, V2> {
+export type Pair<V1, V2> = {
   first: V1
   second: V2
 }
 
-export interface JsonNode {
-  type?: JsonNodeType
-  value?: string | number | Map<string, JsonNode> | JsonNode[]
-  key?: string
+export type JsonNodeValue =
+  | string
+  | number
+  | boolean
+  | Map<string, JsonNode>
+  | Array<JsonNode>
+  | { [key: string]: JsonNode }
+
+export type JsonNode = {
+  type: JsonNodeType
+  value: JsonNodeValue
 }
+
+export type GenerateResult =
+  | string
+  | number
+  | boolean
+  | { [key: string]: GenerateResult }
+  | Array<GenerateResult>
+  | Map<string, GenerateResult>

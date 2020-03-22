@@ -6,7 +6,8 @@
   "author": "zuisong",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint **/*.ts **/*.js --format=friendly"
+    "lint": "eslint **/*.ts **/*.js --format=friendly",
+    "test": "jest"
   },
   "license": "MIT",
   "devDependencies": {

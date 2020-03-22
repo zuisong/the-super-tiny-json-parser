@@ -6,21 +6,21 @@ export function generateTokes(input: string): Array<Token> {
     let c = input[idx]
     if (c === '{' || c === '}') {
       const t: Token = {
-        type: TokenType.大括号,
+        type: TokenType.BIG,
         value: c,
       }
       return { first: idx + 1, second: t }
     }
     if (c === '[' || c === ']') {
       const t: Token = {
-        type: TokenType.方括号,
+        type: TokenType.SQUARE,
         value: c,
       }
       return { first: idx + 1, second: t }
     }
     if (c === ':') {
       const t: Token = {
-        type: TokenType.冒号,
+        type: TokenType.COLON,
         value: c,
       }
       return { first: idx + 1, second: t }
@@ -28,10 +28,26 @@ export function generateTokes(input: string): Array<Token> {
 
     if (c === ',') {
       const t: Token = {
-        type: TokenType.逗号,
+        type: TokenType.COMMA,
         value: c,
       }
       return { first: idx + 1, second: t }
+    }
+
+    if (input.substr(idx, 4) === 'true' || input.substr(idx, 5) === 'false') {
+      if (c === 'f') {
+        const t: Token = {
+          type: TokenType.BOOLEAN,
+          value: 'false',
+        }
+        return { first: idx + 5, second: t }
+      } else {
+        const t: Token = {
+          type: TokenType.BOOLEAN,
+          value: 'true',
+        }
+        return { first: idx + 4, second: t }
+      }
     }
 
     const WHITESPACE = new RegExp(`\\s`)
@@ -48,7 +64,7 @@ export function generateTokes(input: string): Array<Token> {
         c = input[idx + value.length]
       }
       const t: Token = {
-        type: TokenType.数字,
+        type: TokenType.NUMBER,
         value: value,
       }
       return { first: idx + value.length, second: t }
@@ -68,7 +84,7 @@ export function generateTokes(input: string): Array<Token> {
         c = input[idx]
       }
       const t: Token = {
-        type: TokenType.字符串,
+        type: TokenType.STRING,
         value: value,
       }
       idx++ // 跳过结束符
@@ -85,7 +101,7 @@ export function generateTokes(input: string): Array<Token> {
       }
 
       const t: Token = {
-        type: TokenType.名字,
+        type: TokenType.IDENTIFY,
         value,
       }
       return { first: idx + value.length, second: t }
