@@ -1,1 +1,1 @@
-export * from './the-super-tiny-json-parser'
+export * from './src/the-super-tiny-json-parser'

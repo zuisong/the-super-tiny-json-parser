@@ -1,17 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./out",
-    "baseUrl": ".",
     "sourceMap": true,
-    "declaration": false,
+    "module": "ESNext",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": true,
-    "target": "es5",
-    "strict": true,
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2016", "dom"]
+    "allowSyntheticDefaultImports": true
   }
 }
