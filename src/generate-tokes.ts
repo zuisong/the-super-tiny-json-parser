@@ -1,7 +1,5 @@
 // 这里无关语法规则，不校验任何语法
-import { Token } from "./token";
-import { Pair } from "./pair";
-import { TokenType } from "./token-type";
+import {Pair, Token, TokenType} from "./types";
 
 export function generateTokes(input: string): Array<Token> {
   function getToken(idx: number): Pair<number, Token> {

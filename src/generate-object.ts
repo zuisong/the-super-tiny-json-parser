@@ -1,5 +1,5 @@
-import { JsonNode } from "./json-node";
-import { JsonNodeType } from "./json-node-type";
+import {JsonNode, JsonNodeType} from "./types";
+
 
 export function generateObject(ast: JsonNode) {
   function translate(node: JsonNode) {

@@ -1,9 +1,5 @@
-import { Token } from "./token";
-import { Pair } from "./pair";
-import { JsonNode } from "./json-node";
-import { TokenType } from "./token-type";
-import { JsonNodeType } from "./json-node-type";
-import { required } from "./required";
+import {JsonNode, JsonNodeType, Pair, required, Token, TokenType} from "./types";
+
 
 export function generateAst(tokens: Token[]) {
   function getNode(idx: number): Pair<number, JsonNode> {
