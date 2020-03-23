@@ -10,11 +10,11 @@ export enum TokenType {
 }
 
 export enum JsonNodeType {
-  JSON_OBJECT = '1',
-  JSON_ARRAY = '2',
-  NUMBER = '4',
-  STRING = '8',
-  BOOLEAN = '16',
+  JSON_OBJECT = 1,
+  JSON_ARRAY = 2,
+  NUMBER = 4,
+  STRING = 8,
+  BOOLEAN = 16,
 }
 
 export type Token = {
@@ -41,7 +41,6 @@ export type JsonNodeValue =
   | boolean
   | Map<string, JsonNode>
   | Array<JsonNode>
-  | { [key: string]: JsonNode }
 
 export type JsonNode = {
   type: JsonNodeType
@@ -54,4 +53,3 @@ export type GenerateResult =
   | boolean
   | { [key: string]: GenerateResult }
   | Array<GenerateResult>
-  | Map<string, GenerateResult>

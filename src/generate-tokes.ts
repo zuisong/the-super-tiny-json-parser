@@ -9,21 +9,30 @@ export function generateTokes(input: string): Array<Token> {
         type: TokenType.BIG,
         value: c,
       }
-      return { first: idx + 1, second: t }
+      return {
+        first: idx + 1,
+        second: t,
+      }
     }
     if (c === '[' || c === ']') {
       const t: Token = {
         type: TokenType.SQUARE,
         value: c,
       }
-      return { first: idx + 1, second: t }
+      return {
+        first: idx + 1,
+        second: t,
+      }
     }
     if (c === ':') {
       const t: Token = {
         type: TokenType.COLON,
         value: c,
       }
-      return { first: idx + 1, second: t }
+      return {
+        first: idx + 1,
+        second: t,
+      }
     }
 
     if (c === ',') {
@@ -31,7 +40,10 @@ export function generateTokes(input: string): Array<Token> {
         type: TokenType.COMMA,
         value: c,
       }
-      return { first: idx + 1, second: t }
+      return {
+        first: idx + 1,
+        second: t,
+      }
     }
 
     if (input.substr(idx, 4) === 'true' || input.substr(idx, 5) === 'false') {
@@ -40,19 +52,28 @@ export function generateTokes(input: string): Array<Token> {
           type: TokenType.BOOLEAN,
           value: 'false',
         }
-        return { first: idx + 5, second: t }
+        return {
+          first: idx + 5,
+          second: t,
+        }
       } else {
         const t: Token = {
           type: TokenType.BOOLEAN,
           value: 'true',
         }
-        return { first: idx + 4, second: t }
+        return {
+          first: idx + 4,
+          second: t,
+        }
       }
     }
 
     const WHITESPACE = new RegExp(`\\s`)
     if (WHITESPACE.test(c)) {
-      return { first: idx + 1, second: null }
+      return {
+        first: idx + 1,
+        second: null,
+      }
     }
     // 数字
     const NUMBERS = new RegExp(`\\d`)
@@ -67,7 +88,10 @@ export function generateTokes(input: string): Array<Token> {
         type: TokenType.NUMBER,
         value: value,
       }
-      return { first: idx + value.length, second: t }
+      return {
+        first: idx + value.length,
+        second: t,
+      }
     }
     /*
      *  json里的引号里面的是字符串
@@ -88,7 +112,10 @@ export function generateTokes(input: string): Array<Token> {
         value: value,
       }
       idx++ // 跳过结束符
-      return { first: idx, second: t }
+      return {
+        first: idx,
+        second: t,
+      }
     }
 
     const LETTERS = new RegExp(`[a-z]`, 'i')
@@ -104,7 +131,10 @@ export function generateTokes(input: string): Array<Token> {
         type: TokenType.IDENTIFY,
         value,
       }
-      return { first: idx + value.length, second: t }
+      return {
+        first: idx + value.length,
+        second: t,
+      }
     }
 
     // Finally if we have not matched a character by now, we're going to throw

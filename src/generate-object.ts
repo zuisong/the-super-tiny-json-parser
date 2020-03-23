@@ -1,14 +1,20 @@
-import {GenerateResult, JsonNode, JsonNodeType} from './types'
+import { GenerateResult, JsonNode, JsonNodeType } from './types'
 
 export function generateObject(ast: JsonNode) {
   function translate(node: JsonNode): GenerateResult {
-    if (node.type === JsonNodeType.NUMBER || node.type === JsonNodeType.STRING || node.type === JsonNodeType.BOOLEAN) {
+    if (
+      node.type === JsonNodeType.NUMBER ||
+      node.type === JsonNodeType.STRING ||
+      node.type === JsonNodeType.BOOLEAN
+    ) {
       return node.value as string | number | boolean
     }
 
     if (node.type === JsonNodeType.JSON_OBJECT) {
       const m = node.value as Map<string, JsonNode>
-      const resultObj: { [key: string]: GenerateResult } = {}
+      const resultObj: {
+        [key: string]: GenerateResult
+      } = {}
 
       m.forEach((value, key: string) => {
         resultObj[key] = translate(value)
