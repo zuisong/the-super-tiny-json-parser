@@ -5,6 +5,7 @@ import { Configuration } from 'webpack'
 module.exports = {
   mode: 'production',
   entry: './index.ts',
+  devtool: 'source-map',
   output: {
     filename: 'main_[hash].js',
     path: path.resolve(__dirname, 'dist'),

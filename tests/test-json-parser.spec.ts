@@ -4,7 +4,6 @@ import { parseJson } from '../src/the-super-tiny-json-parser'
 describe('json parser', () => {
   it('parse json', () => {
     // 原本的json串
-    // language=json
     const json = `
   {
     c: -11,
