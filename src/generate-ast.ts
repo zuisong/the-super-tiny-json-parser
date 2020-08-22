@@ -7,7 +7,7 @@ import {
   TokenType,
 } from './types'
 
-export function generateAst(tokens: Token[]) {
+export function generateAst(tokens: Token[]): JsonNode {
   function getNode(idx: number): Pair<number, JsonNode> {
     if (tokens[idx].type === TokenType.COMMA) {
       idx++

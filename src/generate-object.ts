@@ -1,6 +1,6 @@
 import { GenerateResult, JsonNode, JsonNodeType } from './types'
 
-export function generateObject(ast: JsonNode) {
+export function generateObject(ast: JsonNode): GenerateResult {
   function translate(node: JsonNode): GenerateResult {
     if (
       node.type === JsonNodeType.NUMBER ||
@@ -16,7 +16,7 @@ export function generateObject(ast: JsonNode) {
         [key: string]: GenerateResult
       } = {}
 
-      m.forEach((value, key: string) => {
+      m.forEach((value: JsonNode, key: string) => {
         resultObj[key] = translate(value)
       })
 
