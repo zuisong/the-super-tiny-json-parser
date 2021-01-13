@@ -3,4 +3,6 @@ node_modules/
 .parcel-cache/
 .yarn/
 .idea/
+.pnp.js
 
+!.yarn/releases/yarn-berry.cjs

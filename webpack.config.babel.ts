@@ -7,7 +7,7 @@ module.exports = {
   entry: './index.ts',
   devtool: 'source-map',
   output: {
-    filename: 'main_[hash].js',
+    filename: 'main_[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
