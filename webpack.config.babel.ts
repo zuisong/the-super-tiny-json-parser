@@ -19,7 +19,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.d.ts', '.tsx', '.js'],
   },
   plugins: [
     new CleanWebpackPlugin({
@@ -27,4 +27,7 @@ module.exports = {
       dry: false,
     }),
   ],
+  optimization: {
+    usedExports: false,
+  },
 } as Configuration

@@ -22,14 +22,6 @@ export type Token = {
   value: string
 }
 
-// 工具方法 校验用
-export function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
-  if (!fn(t)) {
-    throw new Error(message)
-  }
-  return t
-}
-
 export type Pair<V1, V2> = {
   first: V1
   second: V2

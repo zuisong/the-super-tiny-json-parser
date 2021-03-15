@@ -1,11 +1,12 @@
-import {
-  JsonNode,
-  JsonNodeType,
-  Pair,
-  required,
-  Token,
-  TokenType,
-} from './types'
+// 工具方法 校验用
+import { JsonNode, JsonNodeType, Pair, Token, TokenType } from './types'
+
+function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
+  if (!fn(t)) {
+    throw new Error(message)
+  }
+  return t
+}
 
 export function generateAst(tokens: Token[]): JsonNode {
   function getNode(idx: number): Pair<number, JsonNode> {
