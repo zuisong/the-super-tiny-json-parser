@@ -1,5 +1,4 @@
 // 工具方法 校验用
-import { JsonNode, JsonNodeType, Pair, Token, TokenType } from './types'
 
 function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
   if (!fn(t)) {

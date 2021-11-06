@@ -1,4 +1,3 @@
-import { GenerateResult, JsonNode, JsonNodeType } from './types'
 
 export function generateObject(ast: JsonNode): GenerateResult {
   function translate(node: JsonNode): GenerateResult {
