@@ -1,4 +1,4 @@
-declare enum TokenType {
+export enum TokenType {
   BIG = '大括号',
   SQUARE = '方括号',
   COLON = '冒号',
@@ -9,7 +9,7 @@ declare enum TokenType {
   STRING = '字符串',
 }
 
-declare enum JsonNodeType {
+export enum JsonNodeType {
   JSON_OBJECT = 1,
   JSON_ARRAY = 2,
   NUMBER = 4,
@@ -17,29 +17,29 @@ declare enum JsonNodeType {
   BOOLEAN = 16,
 }
 
-declare type Token = {
+export type Token = {
   type: TokenType
   value: string
 }
 
-declare type Pair<V1, V2> = {
+export type Pair<V1, V2> = {
   first: V1
   second: V2
 }
 
-declare type JsonNodeValue =
+export type JsonNodeValue =
   | string
   | number
   | boolean
   | Map<string, JsonNode>
   | Array<JsonNode>
 
-declare type JsonNode = {
+export type JsonNode = {
   type: JsonNodeType
   value: JsonNodeValue
 }
 
-declare type GenerateResult =
+export type GenerateResult =
   | string
   | number
   | boolean

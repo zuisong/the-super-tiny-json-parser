@@ -1,7 +1,8 @@
 // 这里无关语法规则，不校验任何语法
+import { Pair, Token, TokenType } from './types.ts'
 
 export function generateTokes(input: string): Array<Token> {
-  function getToken(idx: number): Pair<number, Token> {
+  function getToken(idx: number): Pair<number, Token | null> {
     let c = input[idx]
     if (c === '{' || c === '}') {
       const t: Token = {
@@ -45,7 +46,10 @@ export function generateTokes(input: string): Array<Token> {
       }
     }
 
-    if (input.substr(idx, 4) === 'true' || input.substr(idx, 5) === 'false') {
+    if (
+      input.substring(idx, idx + 4) === 'true' ||
+      input.substring(idx, idx + 5) === 'false'
+    ) {
       if (c === 'f') {
         const t: Token = {
           type: TokenType.BOOLEAN,

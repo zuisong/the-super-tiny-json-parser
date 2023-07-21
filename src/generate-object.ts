@@ -1,3 +1,4 @@
+import { GenerateResult, JsonNode, JsonNodeType } from './types.ts'
 
 export function generateObject(ast: JsonNode): GenerateResult {
   function translate(node: JsonNode): GenerateResult {

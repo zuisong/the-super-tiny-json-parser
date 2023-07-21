@@ -1,6 +1,6 @@
-import { assert } from 'chai'
-import { parseJson } from '../src/the-super-tiny-json-parser'
-
+import * as assert from 'node:assert'
+import { parseJson } from '../src/the-super-tiny-json-parser.ts'
+import { describe, it } from 'https://deno.land/std@0.194.0/testing/bdd.ts'
 describe('json parser', () => {
   it('parse json', () => {
     // 原本的json串

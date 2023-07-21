@@ -1,4 +1,5 @@
 // 工具方法 校验用
+import { JsonNode, JsonNodeType, Pair, Token, TokenType } from './types.ts'
 
 function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
   if (!fn(t)) {
@@ -26,13 +27,14 @@ export function generateAst(tokens: Token[]): JsonNode {
         const nameToken = tokens[idx]
         required(
           nameToken,
-          it => it.type === TokenType.IDENTIFY || it.type === TokenType.STRING,
-          '大括号后面只能跟名字或字符串'
+          (it) =>
+            it.type === TokenType.IDENTIFY || it.type === TokenType.STRING,
+          '大括号后面只能跟名字或字符串',
         )
         required(
           tokens[idx + 1],
-          it => it.type === TokenType.COLON,
-          '只能是冒号'
+          (it) => it.type === TokenType.COLON,
+          '只能是冒号',
         )
         // 通过递归获取子节点
         const p = getNode(idx + 2)
@@ -42,7 +44,7 @@ export function generateAst(tokens: Token[]): JsonNode {
           idx++
         }
 
-        required(idx, it => it < tokens.length)
+        required(idx, (it) => it < tokens.length)
       }
       idx++ // 跳过结尾的反大括号
       return {
@@ -110,7 +112,7 @@ export function generateAst(tokens: Token[]): JsonNode {
   }
 
   const res = getNode(0)
-  required(res.first, it => it === tokens.length, '必须直接到结尾')
+  required(res.first, (it) => it === tokens.length, '必须直接到结尾')
 
   return res.second
 }

@@ -1,0 +1,18 @@
+{
+  "version": "2",
+  "remote": {
+    "https://deno.land/std@0.194.0/testing/_test_suite.ts": "30f018feeb3835f12ab198d8a518f9089b1bcb2e8c838a8b615ab10d5005465c",
+    "https://deno.land/std@0.194.0/testing/bdd.ts": "0c760348442712ca3ae6102dbb3aa76b49a95ee08fee86c8a0932de53a00e308"
+  },
+  "npm": {
+    "specifiers": {
+      "@types/node": "@types/node@18.16.19"
+    },
+    "packages": {
+      "@types/node@18.16.19": {
+        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
+        "dependencies": {}
+      }
+    }
+  }
+}
