@@ -4,5 +4,6 @@
   "fmt": {
     "semiColons": false,
     "singleQuote": true
-  }
+  },
+  "nodeModulesDir": "none"
 }
