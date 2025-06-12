@@ -1,24 +1,24 @@
-export enum TokenType {
-  BIG = '大括号',
-  SQUARE = '方括号',
-  COLON = '冒号',
-  COMMA = '逗号',
-  IDENTIFY = '标识符',
-  NUMBER = '数字',
-  BOOLEAN = '布尔',
-  STRING = '字符串',
-}
+export const TokenType = {
+  BIG: 'BIG', // '大括号',
+  SQUARE: 'SQUARE', // '方括号',
+  COLON: 'COLON', // '冒号',
+  COMMA: 'COMMA', // '逗号',
+  IDENTIFY: 'IDENTIFY', // '标识符',
+  NUMBER: 'NUMBER', // '数字',
+  BOOLEAN: 'BOOLEAN', // '布尔',
+  STRING: 'STRING', // '字符串',
+} as const
 
-export enum JsonNodeType {
-  JSON_OBJECT = 1,
-  JSON_ARRAY = 2,
-  NUMBER = 4,
-  STRING = 8,
-  BOOLEAN = 16,
-}
+export const JsonNodeType = {
+  JSON_OBJECT: 'JSON_OBJECT',
+  JSON_ARRAY: 'JSON_ARRAY',
+  NUMBER: 'NUMBER',
+  STRING: 'STRING',
+  BOOLEAN: 'BOOLEAN',
+} as const
 
 export type Token = {
-  type: TokenType
+  type: keyof typeof TokenType
   value: string
 }
 
@@ -35,7 +35,7 @@ export type JsonNodeValue =
   | Array<JsonNode>
 
 export type JsonNode = {
-  type: JsonNodeType
+  type: keyof typeof JsonNodeType
   value: JsonNodeValue
 }
 

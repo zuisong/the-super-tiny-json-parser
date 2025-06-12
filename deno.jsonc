@@ -5,5 +5,8 @@
     "semiColons": false,
     "singleQuote": true
   },
-  "nodeModulesDir": "none"
+  "nodeModulesDir": "none",
+  "compilerOptions": {
+    "erasableSyntaxOnly": true
+  }
 }
