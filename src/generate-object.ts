@@ -1,4 +1,5 @@
-import { GenerateResult, JsonNode, JsonNodeType } from './types.ts'
+import { JsonNodeType } from "./types.ts";
+import type { GenerateResult, JsonNode } from "./types.ts";
 
 export function generateObject(ast: JsonNode): GenerateResult {
   function translate(node: JsonNode): GenerateResult {
@@ -7,34 +8,34 @@ export function generateObject(ast: JsonNode): GenerateResult {
       node.type === JsonNodeType.STRING ||
       node.type === JsonNodeType.BOOLEAN
     ) {
-      return node.value as string | number | boolean
+      return node.value as string | number | boolean;
     }
 
     if (node.type === JsonNodeType.JSON_OBJECT) {
-      const m = node.value as Map<string, JsonNode>
+      const m = node.value as Map<string, JsonNode>;
       const resultObj: {
-        [key: string]: GenerateResult
-      } = {}
+        [key: string]: GenerateResult;
+      } = {};
 
       m.forEach((value: JsonNode, key: string) => {
-        resultObj[key] = translate(value)
-      })
+        resultObj[key] = translate(value);
+      });
 
-      return resultObj
+      return resultObj;
     }
 
     if (node.type === JsonNodeType.JSON_ARRAY) {
-      const arr = new Array<GenerateResult>()
-      const a = node.value as JsonNode[]
+      const arr = new Array<GenerateResult>();
+      const a = node.value as JsonNode[];
       a.forEach((value: JsonNode) => {
-        arr.push(translate(value))
-      })
+        arr.push(translate(value));
+      });
 
-      return arr
+      return arr;
     }
 
-    throw Error(JSON.stringify(node))
+    throw Error(JSON.stringify(node));
   }
 
-  return translate(ast)
+  return translate(ast);
 }

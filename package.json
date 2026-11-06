@@ -2,7 +2,17 @@
   "name": "the-super-tiny-json-parser",
   "version": "1.0.0",
   "description": "一个很小的 json 解析器",
-  "main": "index.js",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "bun test"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
   "author": "zuisong",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.6"
+  }
 }

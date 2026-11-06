@@ -1,1 +1,1 @@
-export * from './src/the-super-tiny-json-parser.ts'
+export * from "./src/the-super-tiny-json-parser.ts";

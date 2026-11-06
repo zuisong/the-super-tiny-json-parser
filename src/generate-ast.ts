@@ -1,118 +1,119 @@
 // 工具方法 校验用
-import { JsonNode, JsonNodeType, Pair, Token, TokenType } from './types.ts'
+import { JsonNodeType, TokenType } from "./types.ts";
+import type { JsonNode, Pair, Token } from "./types.ts";
 
-function required<T>(t: T, fn: (t: T) => boolean, message = ''): T {
+function required<T>(t: T, fn: (t: T) => boolean, message = ""): T {
   if (!fn(t)) {
-    throw new Error(message)
+    throw new Error(message);
   }
-  return t
+  return t;
 }
 
 export function generateAst(tokens: Token[]): JsonNode {
   function getNode(idx: number): Pair<number, JsonNode> {
     if (tokens[idx].type === TokenType.COMMA) {
-      idx++
+      idx++;
     }
 
-    const t = tokens[idx]
-    if (t.type === TokenType.BIG && t.value === '{') {
-      idx++ // 跳过大括号节点
+    const t = tokens[idx];
+    if (t.type === TokenType.BIG && t.value === "{") {
+      idx++; // 跳过大括号节点
 
-      const node = {} as JsonNode
-      node.type = JsonNodeType.JSON_OBJECT
-      node.value = new Map<string, JsonNode>()
+      const node = {} as JsonNode;
+      node.type = JsonNodeType.JSON_OBJECT;
+      node.value = new Map<string, JsonNode>();
       // 大括号处理
       // 保存存有名字token
-      while (tokens[idx].type !== TokenType.BIG && tokens[idx].value !== '}') {
-        const nameToken = tokens[idx]
+      while (tokens[idx].type !== TokenType.BIG && tokens[idx].value !== "}") {
+        const nameToken = tokens[idx];
         required(
           nameToken,
           (it) =>
             it.type === TokenType.IDENTIFY || it.type === TokenType.STRING,
-          '大括号后面只能跟名字或字符串',
-        )
+          "大括号后面只能跟名字或字符串",
+        );
         required(
           tokens[idx + 1],
           (it) => it.type === TokenType.COLON,
-          '只能是冒号',
-        )
+          "只能是冒号",
+        );
         // 通过递归获取子节点
-        const p = getNode(idx + 2)
-        node.value.set(nameToken.value, p.second)
-        idx = p.first
+        const p = getNode(idx + 2);
+        node.value.set(nameToken.value, p.second);
+        idx = p.first;
         if (tokens[idx].type === TokenType.COMMA) {
-          idx++
+          idx++;
         }
 
-        required(idx, (it) => it < tokens.length)
+        required(idx, (it) => it < tokens.length);
       }
-      idx++ // 跳过结尾的反大括号
+      idx++; // 跳过结尾的反大括号
       return {
         first: idx,
         second: node,
-      }
+      };
     }
 
-    if (t.type === TokenType.SQUARE && t.value == '[') {
-      idx++
-      const node = {} as JsonNode
-      node.type = JsonNodeType.JSON_ARRAY
-      node.value = new Array<JsonNode>()
+    if (t.type === TokenType.SQUARE && t.value == "[") {
+      idx++;
+      const node = {} as JsonNode;
+      node.type = JsonNodeType.JSON_ARRAY;
+      node.value = new Array<JsonNode>();
 
       while (
         tokens[idx].type !== TokenType.SQUARE &&
-        tokens[idx].value !== ']'
+        tokens[idx].value !== "]"
       ) {
-        const p = getNode(idx)
-        node.value.push(p.second)
+        const p = getNode(idx);
+        node.value.push(p.second);
 
-        idx = p.first
+        idx = p.first;
         if (tokens[idx].type === TokenType.COMMA) {
-          idx++
+          idx++;
         }
       }
-      idx++
+      idx++;
       return {
         first: idx,
         second: node,
-      }
+      };
     }
 
     if (t.type === TokenType.NUMBER) {
-      const node = {} as JsonNode
-      node.type = JsonNodeType.NUMBER
-      node.value = Number(t.value)
+      const node = {} as JsonNode;
+      node.type = JsonNodeType.NUMBER;
+      node.value = Number(t.value);
       return {
         first: idx + 1,
         second: node,
-      }
+      };
     }
 
     if (t.type === TokenType.STRING) {
-      const node = {} as JsonNode
-      node.type = JsonNodeType.STRING
-      node.value = t.value
+      const node = {} as JsonNode;
+      node.type = JsonNodeType.STRING;
+      node.value = t.value;
       return {
         first: idx + 1,
         second: node,
-      }
+      };
     }
 
     if (t.type === TokenType.BOOLEAN) {
-      const node = {} as JsonNode
-      node.type = JsonNodeType.BOOLEAN
-      node.value = t.value === 'true'
+      const node = {} as JsonNode;
+      node.type = JsonNodeType.BOOLEAN;
+      node.value = t.value === "true";
       return {
         first: idx + 1,
         second: node,
-      }
+      };
     }
 
-    throw new Error(JSON.stringify(t))
+    throw new Error(JSON.stringify(t));
   }
 
-  const res = getNode(0)
-  required(res.first, (it) => it === tokens.length, '必须直接到结尾')
+  const res = getNode(0);
+  required(res.first, (it) => it === tokens.length, "必须直接到结尾");
 
-  return res.second
+  return res.second;
 }

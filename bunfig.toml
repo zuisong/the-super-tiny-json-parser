@@ -1,0 +1,8 @@
+[lint]
+typeAware = true
+
+# node:test 的 it()/describe() 返回 Promise，no-floating-promises 在测试里只是噪音
+[[lint.overrides]]
+files = ["tests/**"]
+[lint.overrides.rules]
+"@typescript-eslint/no-floating-promises" = "off"
